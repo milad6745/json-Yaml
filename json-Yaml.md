@@ -140,3 +140,60 @@ message: |-
   i 39 yeasr old.
 
 ```
+### Yaml to Json
+
+&default --> *default
+expand karde
+```
+---
+default_value: &default
+ hostname: localhost
+ port_number: 80
+ 
+
+nginx_server: *default
+apache_server: *default
+```
+
+```
+{
+  "default_value": {
+    "hostname": "localhost",
+    "port_number": 80
+  },
+  "nginx_server": {
+    "hostname": "localhost",
+    "port_number": 80
+  },
+  "apache_server": {
+    "hostname": "localhost",
+    "port_number": 80
+  }
+}
+```
+
+
+## Example
+```
+---
+default_value: &default
+ hostname: localhost
+ port_number: 80
+ 
+
+nginx_server:       
+  <<: *default      # boro az default bekhon
+  hostname: test    # badesh faghat hostesh ro change kon
+```
+```
+{
+  "default_value": {
+    "hostname": "localhost",
+    "port_number": 80
+  },
+  "nginx_server": {
+    "hostname": "test",
+    "port_number": 80
+  }
+}
+```
